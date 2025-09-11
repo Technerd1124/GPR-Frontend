@@ -3,12 +3,32 @@ import { Keyboard, Pagination, Navigation } from 'swiper/modules';
 import TestimonialV3Data from "../../../src/assets/jsonData/testimonial/TestimonialV3Data.json"
 import shape14 from "/assets/img/shape/14.png";
 import SingleTestimonialV3 from "./SingleTestimonialV3";
+import { TestimonialData } from '../../types/cms';
+import { getTestimonials } from '../../api/strapi';
+import { useEffect, useState } from 'react';
 
 interface DataType {
     sectionClass?: string
 }
 
+
 const TestimonialV3 = ({ sectionClass }: DataType) => {
+
+    const [Testimonial, setTestimonial] = useState<TestimonialData | null>(null);
+    
+        useEffect(() => {
+            const fetchData = async () => {
+                try {
+                    const res = await getTestimonials();
+                    setTestimonial(res.data);
+                } catch (err) {
+                    console.error("Error fetching header:", err);
+                }
+            };
+            fetchData();
+        }, []);
+    
+        if (!Testimonial) return null;
     return (
         <>
             <div className={`testimonial-style-three-area default-padding ${sectionClass ? sectionClass : ""}`}>
@@ -66,7 +86,7 @@ const TestimonialV3 = ({ sectionClass }: DataType) => {
                                 modules={[Pagination, Navigation, Keyboard]}
                             >
                                 <div className="swiper-wrapper">
-                                    {TestimonialV3Data.map(testimonial =>
+                                    {Testimonial.TestimonialData.map(testimonial =>
                                         <SwiperSlide key={testimonial.id}>
                                             <SingleTestimonialV3 testimonial={testimonial} />
                                         </SwiperSlide>

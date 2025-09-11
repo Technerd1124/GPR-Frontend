@@ -1,22 +1,23 @@
-interface DataType {
-    title?: string;
-    thumb?: string;
-    text?: string;
+import { SectionData } from "../../types/cms";
+
+interface SingleProcessV1Props {
+    process: SectionData;
 }
 
-const SingleProcessV1 = ({ process }: { process: DataType }) => {
-    const { thumb, title, text } = process
-
+const SingleProcessV1 = ({ process }: SingleProcessV1Props) => {
     return (
-        <>
-            <div className="item">
-                <div className="icon">
-                    <img src={`/assets/img/icon/${thumb}`} alt="Icon" width={200} height={230} />
-                </div>
-                <h4>{title}</h4>
-                <p>{text}</p>
+        <div className="item">
+            <div className="icon">
+                <img
+                    src={`/assets/img/icon/default.png`}
+                    alt="image not found"
+                    width={200}
+                    height={230}
+                />
             </div>
-        </>
+            <h4>{process.title}</h4>
+            <p>{process.Description}</p>
+        </div>
     );
 };
 

@@ -1,9 +1,9 @@
+import useHorizontalScroll from "../../hooks/useHorizontalScroll";
+import ExpertiseV1 from "../expertise/ExpertiseV1";
 import ProjectIdeaV1 from "../project/ProjectIdeaV1";
 import WhyChooseV1 from "../whyChoose/WhyChooseV1";
-import ExpertiseV1Light from "../expertise/ExpertiseV1Light";
-import useHorizontalScroll from "../../hooks/useHorizontalScroll";
 
-const MultiSectionLight = () => {
+const MultiSection = () => {
     useHorizontalScroll();
 
     return (
@@ -14,7 +14,7 @@ const MultiSectionLight = () => {
                         <WhyChooseV1 />
                     </div>
                     <div className="panel overflow-hidden bg-gray">
-                        <ExpertiseV1Light />
+                        <ExpertiseV1 />
                     </div>
                     <div className="panel contact-panel overflow-hidden">
                         <ProjectIdeaV1 />
@@ -25,4 +25,4 @@ const MultiSectionLight = () => {
     );
 };
 
-export default MultiSectionLight;
+export default MultiSection;

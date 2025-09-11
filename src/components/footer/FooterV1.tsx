@@ -1,88 +1,141 @@
 import { Link } from "react-router-dom";
-import NewsletterV2 from '../newsletter/NewsletterV2';
-import FooterSocial from '../social/FooterSocial';
-import logoLight from '/assets/img/logo-light.png'
-import logo from '/assets/img/logo.png'
+import NewsletterV2 from "../newsletter/NewsletterV2";
+import FooterSocial from "../social/FooterSocial";
+import logo from "/assets/img/LogoGpr.svg";
+import { FooterData, HeaderData } from "../../types/cms";
+import { useEffect, useState } from "react";
+import { getFooter, getHeader } from "../../api/strapi";
 
 interface DataType {
     sectionClass?: string;
-    lightMode?: boolean;
 }
 
-const FooterV1 = ({ sectionClass, lightMode }: DataType) => {
+const FooterV1 = ({ sectionClass }: DataType) => {
+    const [footer, setFooter] = useState<FooterData | null>(null);
+    const [links, setLinks] = useState<HeaderData | null>(null);
+
+    useEffect(() => {
+        const fetchFooterData = async () => {
+            try {
+                const res = await getFooter();
+                setFooter(res.data);
+            } catch (err) {
+                console.error("Error fetching Footer:", err);
+            }
+        };
+
+        const fetchLinks = async () => {
+            try {
+                const res = await getHeader();
+                setLinks(res.data);
+            } catch (err) {
+                console.error("Error fetching Footer Links:", err);
+            }
+        };
+
+        fetchFooterData();
+        fetchLinks();
+    }, []);
+
+    if (!footer) return null;
+
     return (
-        <>
-            <footer className={`${sectionClass ? sectionClass : ""}`}>
+        <footer className={`${sectionClass ? sectionClass : ""}`}>
+            <div className="container">
+                <div className="f-items">
+                    <div className="row">
+                        {/* Left column */}
+                        <div className="col-lg-6 footer-item about pr-120 pr-md-15 pr-xs-15">
+                            <div className="top">
+                                <img src={logo} alt={footer.Logo?.alt_text || "Logo"} />
+                            </div>
+
+                            {/* Contact Addresses */}
+                            <ul className="address-list">
+                                {footer?.contactItem?.map((item) => (
+                                    <li key={item.id}>
+                                        <h4>{item.Label}</h4>
+                                        <p>{item.value}</p>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <NewsletterV2 />
+                        </div>
+
+                        {/* Right column */}
+                        <div className="col-lg-5 offset-lg-1 footer-item">
+                            <h4 className="widget-title">Useful Link</h4>
+                            <ul className="useful-link">
+                                {/* Header Links */}
+                                {links?.NAVLINK?.map((item) => (
+                                    <li key={item.id}>
+                                        <Link
+                                            to={item.URL}
+                                            target={item.IsExternal ? "_blank" : "_self"}
+                                            rel="noopener noreferrer"
+                                        >
+                                            {item?.Label}
+                                        </Link>
+                                    </li>
+                                ))}
+
+
+
+                                {/* Footer Links */}
+                                {footer?.footerLinks?.map((item) => (
+                                    <li key={item.id}>
+                                        <Link
+                                            to={item.Url}
+                                            target={item.IsExternal ? "_blank" : "_self"}
+                                            rel="noopener noreferrer">
+                                            {item?.Label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {/* Contact Info */}
+                            <div className="footer-contact">
+                                <ul>
+                                    {footer.MailID && (
+                                        <li>
+                                            <a href={`mailto:${footer.MailID}`}>{footer.MailID}</a>
+                                        </li>
+                                    )}
+                                    {footer.contactNo && (
+                                        <li>
+                                            <a href={`tel:+${footer.contactNo}`}>
+                                                {footer.contactNo}
+                                            </a>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Bottom */}
+            <div className="footer-bottom">
                 <div className="container">
-                    <div className="f-items">
-                        <div className="row">
-                            <div className="col-lg-6 footer-item about pr-120 pr-md-15 pr-xs-15 pr-md-15 pr-xs-15">
-                                <div className="top">
-                                    {lightMode ?
-                                        <img src={logo} alt="Image Not Found" /> :
-                                        <img src={logoLight} alt="Image Not Found" />
-                                    }
-                                </div>
-                                <ul className="address-list">
-                                    <li>
-                                        <h4>Australia</h4>
-                                        <p>
-                                            Travel World House, Level 7, 17 Jones St, NSW, 2060
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <h4>Dubai</h4>
-                                        <p>
-                                            Sheikh Mohammed bin salah, #234 B - Downtown - Dubai
-                                        </p>
-                                    </li>
-                                </ul>
-                                <NewsletterV2 />
-                            </div>
-                            <div className="col-lg-5 offset-lg-1 footer-item">
-                                <h4 className="widget-title">Useful Link</h4>
-                                <ul className="useful-link">
-                                    <li><Link to="/about-us">About Us</Link></li>
-                                    <li><Link to="/contact-us">Contact</Link></li>
-                                    <li><Link to="/faq">FAQS</Link></li>
-                                    <li><Link to="/services">Services</Link></li>
-                                    <li><Link to="/about-2">Term & Conditions</Link></li>
-                                    <li><Link to="/about-us">Privacy Policy</Link></li>
-                                    <li><Link to="/about-2">Careers</Link></li>
-                                    <li><Link to="/contact-us">Help Desk</Link></li>
-                                </ul>
-                                <div className="footer-contact">
-                                    <ul>
-                                        <li>
-                                            <a href="mailto:someone@example.com">info@dixor.com</a>
-                                        </li>
-                                        <li>
-                                            <a href="tel:+4733378901">+47 333 78 901</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <ul className="footer-social">
+                                <FooterSocial />
+                            </ul>
+                        </div>
+                        <div className="col-lg-6 text-end">
+                            <p>
+                                Copyright &copy; {new Date().getFullYear()} GPR. All Rights
+                                Reserved
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div className="footer-bottom">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <ul className="footer-social">
-                                    <FooterSocial />
-                                </ul>
-                            </div>
-                            <div className="col-lg-6 text-end">
-                                <p>
-                                    Copyright &copy; {(new Date().getFullYear())} Dixor. All Rights Reserved
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </>
+            </div>
+        </footer>
     );
 };
 

@@ -1,9 +1,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Pagination, Navigation, EffectFade } from 'swiper/modules';
-import PortfolioV1Data from '../../../src/assets/jsonData/portfolio/PortfolioV1Data.json';
 import SinglePortfolioV1Light from './SinglePortfolioV1Light';
+import { ProjectCard } from '../../types/cms';
 
-const PortfolioV1Light = () => {
+interface PortfolioV1LightProps {
+    project: ProjectCard[];
+}
+
+const PortfolioV1Light: React.FC<PortfolioV1LightProps> = ({ project }) => {
     return (
         <>
             <div className="portfolio-style-one-content">
@@ -26,10 +30,12 @@ const PortfolioV1Light = () => {
                     }}
                     modules={[Navigation, Pagination, EffectFade, Keyboard]}
                 >
+
+                    
                     <div className="swiper-wrapper">
-                        {PortfolioV1Data.map(portfolio =>
-                            <SwiperSlide key={portfolio.id}>
-                                <SinglePortfolioV1Light portfolio={portfolio} />
+                        {project.map(portfolio =>
+                            <SwiperSlide key={portfolio.count_id}>
+                                <SinglePortfolioV1Light project={portfolio} />
                             </SwiperSlide>
                         )}
                     </div>

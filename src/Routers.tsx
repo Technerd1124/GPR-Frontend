@@ -1,13 +1,13 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home1Light from "./pages/homePages/Home1Light";
-import Home2Light from "./pages/homePages/Home2Light";
-import Home3Light from "./pages/homePages/Home3Light";
-import Home4Light from "./pages/homePages/Home4Light";
-import Home5Light from "./pages/homePages/Home5Light";
-import Home6Light from "./pages/homePages/Home6Light";
-import Home7Light from "./pages/homePages/Home7Light";
-import Home8Light from "./pages/homePages/Home8Light";
-import Home9Light from "./pages/homePages/Home9Light";
+// import Home2Light from "./pages/homePages/Home2Light";
+// import Home3Light from "./pages/homePages/Home3Light";
+// import Home4Light from "./pages/homePages/Home4Light";
+// import Home5Light from "./pages/homePages/Home5Light";
+// import Home6Light from "./pages/homePages/Home6Light";
+// import Home7Light from "./pages/homePages/Home7Light";
+// import Home8Light from "./pages/homePages/Home8Light";
+// import Home9Light from "./pages/homePages/Home9Light";
 
 import AboutUsLightPage from "./pages/innerPages/AboutUsLightPage";
 import About2LightPage from "./pages/innerPages/About2LightPage";
@@ -43,15 +43,7 @@ const Routers = () => {
 
       {/* Redirect all default/dark paths to light versions instantly */}
       <Route path="/" element={<Navigate to="/home-1-light" replace />} />
-      <Route path="/home-1" element={<Navigate to="/home-1-light" replace />} />
-      <Route path="/home-2" element={<Navigate to="/home-2-light" replace />} />
-      <Route path="/home-3" element={<Navigate to="/home-3-light" replace />} />
-      <Route path="/home-4" element={<Navigate to="/home-4-light" replace />} />
-      <Route path="/home-5" element={<Navigate to="/home-5-light" replace />} />
-      <Route path="/home-6" element={<Navigate to="/home-6-light" replace />} />
-      <Route path="/home-7" element={<Navigate to="/home-7-light" replace />} />
-      <Route path="/home-8" element={<Navigate to="/home-8-light" replace />} />
-      <Route path="/home-9" element={<Navigate to="/home-9-light" replace />} />
+   
 
       <Route path="/about-us" element={<Navigate to="/about-us-light" replace />} />
       <Route path="/about-2" element={<Navigate to="/about-2-light" replace />} />
@@ -80,14 +72,14 @@ const Routers = () => {
 
       {/* Light Versions */}
       <Route path="/home-1-light" element={<Home1Light />} />
-      <Route path="/home-2-light" element={<Home2Light />} />
+      {/* <Route path="/home-2-light" element={<Home2Light />} />
       <Route path="/home-3-light" element={<Home3Light />} />
       <Route path="/home-4-light" element={<Home4Light />} />
       <Route path="/home-5-light" element={<Home5Light />} />
       <Route path="/home-6-light" element={<Home6Light />} />
       <Route path="/home-7-light" element={<Home7Light />} />
       <Route path="/home-8-light" element={<Home8Light />} />
-      <Route path="/home-9-light" element={<Home9Light />} />
+      <Route path="/home-9-light" element={<Home9Light />} /> */}
 
       <Route path="/about-us-light" element={<AboutUsLightPage />} />
       <Route path="/about-2-light" element={<About2LightPage />} />

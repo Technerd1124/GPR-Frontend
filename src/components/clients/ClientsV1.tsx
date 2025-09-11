@@ -13,12 +13,32 @@ import { Link } from "react-router-dom";
 import CountUp from 'react-countup';
 import handleSmoothScroll from '../utilities/handleSmoothScroll';
 import SplitText from "../animation/SplitText.jsx"
+import { useEffect, useState } from 'react';
+import { ActiveClient } from '../../types/cms.js';
+import { getActiveClients } from '../../api/strapi.js';
 
 interface DataType {
     sectionClass?: string
 }
 
+
 const ClientsV1 = ({ sectionClass }: DataType) => {
+
+    const [activeClient, setActiveClient] = useState<ActiveClient | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getActiveClients();
+                setActiveClient(res.data);
+            } catch (err) {
+                console.error("Error fetching Active Clients Number :", err);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (!activeClient) return null;
     return (
         <>
             <div className={`clients-area default-padding ${sectionClass ? sectionClass : ""}`}>
@@ -71,7 +91,7 @@ const ClientsV1 = ({ sectionClass }: DataType) => {
                                 <div className="client-style-one-item">
                                     <div className="fun-fact">
                                         <div className="counter">
-                                            <div className="count-num"><CountUp end={45} enableScrollSpy /></div>
+                                            <div className="count-num"><CountUp end={Number(activeClient.ActiveClientNumber)} enableScrollSpy /></div>
                                             <div className="operator">+</div>
                                         </div>
                                         <span className="medium">Active Clients</span>

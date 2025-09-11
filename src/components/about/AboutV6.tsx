@@ -1,24 +1,41 @@
-import thumb2 from "/assets/img/thumb/2.jpg";
-import thumb12 from "/assets/img/thumb/12.jpg";
+
 import arrowIcon from "/assets/img/icon/arrow.png";
 import arrowTheme from "/assets/img/icon/arrow-theme.png";
-import ServiceListData from "../../../src/assets/jsonData/services/ServiceListData.json";
-import ServiceList from "../services/ServiceList";
+
 import { Link } from "react-router-dom";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAboutCompany, MEDIA_URL } from "../../api/strapi";
+import { AboutCompanyData } from "../../types/cms";
 
 interface DataType {
     lightMode?: boolean;
     sectionClass?: string;
 }
 
+
 const AboutV6 = ({ lightMode, sectionClass }: DataType) => {
     const containerRef = useScrollAnimation();
+    const [AboutData, setAboutData] = useState<AboutCompanyData | null>(null);
+    const [activeServiceId, setActiveServiceId] = useState(AboutData?.menu[0]?.count || null);
 
-    const [activeServiceId, setActiveServiceId] = useState(ServiceListData[0]?.id || null);
 
-    const handleMouseEnter = (id: number) => {
+    useEffect(() => {
+        const fetchAboutData = async () => {
+            try {
+                const res = await getAboutCompany();
+                setAboutData(res.data);
+            } catch (err) {
+                console.error("Error fetching About Data:", err);
+            }
+        };
+
+        fetchAboutData();
+
+    }, []);
+    if (!AboutData) return null;
+
+    const handleMouseEnter = (id: string) => {
         setActiveServiceId(id);
     };
 
@@ -33,7 +50,7 @@ const AboutV6 = ({ lightMode, sectionClass }: DataType) => {
                     <div className="row">
                         <div className="col-xl-5 col-lg-5">
                             <div className="thumb-style-four">
-                                <img src={lightMode ? thumb12 : thumb2} alt="Image Not Found" />
+                                <img src={`${MEDIA_URL}${AboutData.Media.url}`} alt="Image Not Found" />
                             </div>
                         </div>
                         <div className="col-xl-6 offset-xl-1 col-lg-7">
@@ -41,21 +58,26 @@ const AboutV6 = ({ lightMode, sectionClass }: DataType) => {
                                 <div className="info">
                                     <div className="d-flex">
                                         <Link to="/about-us"><img src={lightMode ? arrowTheme : arrowIcon} alt="Image Not Found" /></Link>
-                                        <h2 className="title text">Best creative & digital agency</h2>
+                                        <h2 className="title text">{AboutData.Title}</h2>
                                     </div>
                                     <p className="text">
-                                        Give lady of they such they sure it. Me contained explained my education. Vulgar as hearts by garret. Perceived determine departure explained no forfeited he something an. Contrasted dissimilar get joy you instrument out reasonably
+                                        {AboutData.Description}
                                     </p>
                                 </div>
                                 <ul className="service-list">
-                                    {ServiceListData.map(service =>
+                                    {AboutData.menu.map(service =>
                                         <li
                                             key={service.id}
-                                            onMouseEnter={() => handleMouseEnter(service.id)}
+                                            onMouseEnter={() => handleMouseEnter(service.count)}
                                             onMouseLeave={handleMouseLeave}
                                         >
-                                            <Link to="/services" className={`${activeServiceId === service.id ? 'active' : ''}`}>
-                                                <ServiceList service={service} />
+                                            <Link to="/services" className={`${activeServiceId === service.count ? 'active' : ''}`}>
+                                                {/* <ServiceList service={service} /> */}
+                                                <div className="icon">
+                                                    <i className="fas fa-long-arrow-right" />
+                                                </div>
+                                                <span>{service.count}</span>
+                                                {service.label}
                                             </Link>
                                         </li>
                                     )}

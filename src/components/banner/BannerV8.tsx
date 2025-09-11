@@ -2,16 +2,37 @@ import illustration1 from '/assets/img/illustration/1.png';
 import { Link } from "react-router-dom";
 import CountUp from 'react-countup';
 import SplitText from "../animation/SplitText.jsx"
+import { useEffect, useState } from 'react';
+import { GetMainSection } from '../../api/strapi.js';
+import { HeroData } from '../../types/cms.js';
+import { MEDIA_URL } from '../../api/strapi.js';
 
-interface DataType {
-    lightMode?: boolean;
-}
 
-const BannerV8 = ({ lightMode }: DataType) => {
+
+const BannerV8 = () => {
+
+    const [MainSection, setMainSection] = useState<HeroData | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await GetMainSection();
+                setMainSection(res.data);
+            } catch (err) {
+                console.error("Error fetching header:", err);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (!MainSection) return null;
     return (
         <>
             <div className="banner-style-eight-area bg-cover"
-                style={{ backgroundImage: `url(${lightMode ? "/assets/img/shape/4.jpg" : "/assets/img/shape/3.jpg"})` }}>
+                style={{
+                    backgroundImage: `url(${MEDIA_URL}${MainSection.BackgroundHero.url})`,
+                }}
+            >
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-8">
@@ -28,22 +49,11 @@ const BannerV8 = ({ lightMode }: DataType) => {
                                             threshold={0.2}
                                             rootMargin="-50px"
                                         >
-                                            Designing
+                                            {MainSection.MainSlogan}
                                         </SplitText>
                                     </h2>
 
-                                    <h2 className="title-right split-text">
-                                        <SplitText
-                                            delay={150}
-                                            animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
-                                            animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}
-                                            easing="easeOutCubic"
-                                            threshold={0.2}
-                                            rootMargin="-50px"
-                                        >
-                                            Creative
-                                        </SplitText>
-                                    </h2>
+
 
                                 </div>
                             </div>
@@ -57,12 +67,12 @@ const BannerV8 = ({ lightMode }: DataType) => {
                     <div className="row">
                         <div className="col-xl-7">
                             <div className="d-grid">
-                                <h4>Dexus Agency</h4>
+                                <h4>{MainSection.SubTitle}</h4>
                                 <div className="right">
                                     <p>
-                                        Providing innovative solutions in branding, marketing, design, and advertising. These agencies often collaborate with clients to develop unique campaigns, visual identities, and digital strategies that resonate with target audiences. Services may include graphic design, content creation, social media management.
+                                        {MainSection.MainDescription}
                                     </p>
-                                    <Link className="btn-animation mt-10" to="/about-2"><i className="fas fa-arrow-right" /> <span>Know More</span></Link>
+                                    <Link className="btn-animation mt-10" to="/Services"><i className="fas fa-arrow-right" /> <span>Know More</span></Link>
                                 </div>
                             </div>
                         </div>
@@ -71,8 +81,8 @@ const BannerV8 = ({ lightMode }: DataType) => {
                                 <div className="bottom">
                                     <div className="fun-fact">
                                         <div className="counter">
-                                            <div className="timer"><CountUp end={31} enableScrollSpy /></div>
-                                            <div className="operator">K</div>
+                                            <div className="timer"><CountUp end={MainSection.completeProjectNo} enableScrollSpy /></div>
+                                            <div className="operator">+</div>
                                         </div>
                                         <span className="medium">Completed Projects</span>
                                     </div>

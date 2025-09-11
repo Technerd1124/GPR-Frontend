@@ -1,3 +1,5 @@
+import { MEDIA_URL } from '../../api/strapi';
+import { Testimonial } from '../../types/cms';
 import RatingsStar from '../utilities/RatingsStar';
 
 interface DataType {
@@ -8,27 +10,29 @@ interface DataType {
     name?: string;
     designation?: string;
 }
+type Props = {
+    testimonial: Testimonial;
 
-const SingleTestimonialV3 = ({ testimonial }: { testimonial: DataType }) => {
-    const { ratings, text, avatar, name, designation } = testimonial
+};
+const SingleTestimonialV3: React.FC<Props> = ({ testimonial }) => {
 
     return (
         <>
             <div className="testimonial-style-three-item">
                 <div className="tes-rating">
-                    <span className='me-3'>{ratings}</span>
+                    <span className='me-3'>{testimonial.rating}</span>
                     <div className="icon">
-                        <RatingsStar ratings={ratings} />
+                        <RatingsStar ratings={testimonial.rating} />
                     </div>
                 </div>
-                <p>{text}</p>
+                <p>{testimonial.quote}</p>
                 <div className="tm-provider">
                     <div className="thumb">
-                        <img src={`/assets/img/team/${avatar}`} alt="Image Not Found" width={200} height={200} />
+                        <img src={`${MEDIA_URL}${testimonial.avatar.url}`} alt="Image Not Found" width={200} height={200} />
                     </div>
                     <div className="content">
-                        <h4>{name}</h4>
-                        <span>{designation}</span>
+                        <h4>{testimonial.authorName}</h4>
+                        <span>{testimonial.authorTitle}</span>
                     </div>
                 </div>
             </div>

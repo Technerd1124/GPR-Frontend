@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
+import { SocialLink } from "../../types/cms";
 
-const SocialShareV1 = () => {
+
+interface Props {
+    socials: SocialLink[];
+}
+const SocialShareV1: React.FC<Props> = ({ socials }) => {
     return (
         <>
-            <li>
-                <Link to="https://www.linkedin.com/" target='_blank'><i className="fab fa-linkedin-in" /></Link>
-            </li>
-            <li>
-                <Link to="https://www.dribbble.com/" target='_blank'><i className="fab fa-dribbble" /></Link>
-            </li>
-            <li>
-                <Link to="https://www.facebook.com/" target='_blank'><i className="fab fa-facebook-f" /></Link>
-            </li>
+            {socials.map((item, i) => (
+                <li key={item.id || i}>
+                    <Link to={item.SocialUrl} target='_blank'><i className="fab fa-linkedin-in" /></Link>
+                </li>
+            ))}
         </>
     );
 };

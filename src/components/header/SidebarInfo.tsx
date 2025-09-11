@@ -1,15 +1,33 @@
 import SocialShareV3 from '../social/SocialShareV3';
 import { Link } from "react-router-dom";
 import HeaderNewsLetter from './HeaderNewsLetter';
-import logoLight from '/assets/img/logo-light.png';
+import Logo from '/assets/img/LogoGpr.svg';
+import { ContactSidebarData } from '../../types/cms';
+import { useEffect, useState } from 'react';
+import { getSidebar } from '../../api/strapi';
 
 interface SidebarInfoProps {
     openInfoBar?: () => void;
     isInfoOpen?: boolean;
     closeInfoBar?: () => void;
 }
-
 const SidebarInfo = ({ openInfoBar, isInfoOpen, closeInfoBar }: SidebarInfoProps) => {
+
+    const [SideBarData, setSideBar] = useState<ContactSidebarData | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getSidebar();
+                setSideBar(res.data);
+            } catch (err) {
+                console.error("Error fetching SideBar :", err);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (!SideBarData) return null;
     return (
         <>
             <div className="attr-right">
@@ -24,36 +42,29 @@ const SidebarInfo = ({ openInfoBar, isInfoOpen, closeInfoBar }: SidebarInfoProps
                         </li>
                     </ul>
                 </div>
-
                 <div className={`side ${isInfoOpen ? "on" : ""}`}>
                     <Link to="#" className="close-side" onClick={closeInfoBar}><i className="fa fa-times"></i></Link>
                     <div className="top">
                         <div className="widget">
                             <div className="logo">
-                                <img src={logoLight} alt="Logo" />
+                                <img src={Logo} alt="Logo" />
                             </div>
                         </div>
                         <div className="widget address">
                             <div>
                                 <ul>
-                                    <li>
-                                        <div className="content">
-                                            <p>Address</p>
-                                            <strong>California, TX 70240</strong>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="content">
-                                            <p>Email</p>
-                                            <strong>support@validtheme.com</strong>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="content">
-                                            <p>Contact</p>
-                                            <strong>+44-20-7328-4499</strong>
-                                        </div>
-                                    </li>
+                                    {SideBarData.ContactData.map((item,i) => (
+                                      
+                                        <li key={item.id || i} >
+                                            <div className="content">
+                                                <p> {item.Label}</p>
+                                                <strong>{item.value}</strong>
+                                            </div>
+                                        </li>
+                                        
+                                    ))
+                                    }
+
                                 </ul>
                             </div>
                         </div>
