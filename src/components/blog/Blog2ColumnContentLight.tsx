@@ -3,13 +3,10 @@ import SingleBlog2ColumnLight from './SingleBlog2ColumnLight';
 import { useEffect, useState } from 'react';
 import Pagination from 'react-paginate';
 import { useNavigate, useParams } from 'react-router-dom';
-
 interface DataType {
     sectionClass?: string
 }
-
 const Blog2ColumnContentLight = ({ sectionClass }: DataType) => {
-
     // Pagination 
     const navigate = useNavigate();
     const { page } = useParams<{ page?: string }>();
@@ -30,29 +27,23 @@ const Blog2ColumnContentLight = ({ sectionClass }: DataType) => {
     const handlePageClick = (data: any) => {
         const selectedPage = data.selected + 1;
         setCurrentPage(selectedPage);
-
         // Update the URL dynamically
         navigate(`/blog-2-column-light?page=${selectedPage}`);
-
         setTimeout(() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }, 200);
     };
-
-    const totalPages = Math.ceil(BlogV3Data.length / itemsPerPage);
-
+    // const totalPages = Math.ceil(BlogV3Data.length / itemsPerPage);
+    const totalPages = 2
     return (
         <>
             <div className={`blog-area blog-grid-colum ${sectionClass ? sectionClass : ""}`}>
                 <div className="container">
                     <div className="row">
-                        {currentBlogData.map(blog =>
-                            <div className="col-lg-6 mb-50" key={blog.id}>
-                                <SingleBlog2ColumnLight blog={blog} />
-                            </div>
-                        )}
+                        <div className="col-lg-5 mb-50">
+                            <SingleBlog2ColumnLight />
+                        </div>
                     </div>
-
                     {/* Pagination */}
                     <div className="row">
                         <div className="col-md-12 pagi-area text-center">
@@ -60,7 +51,7 @@ const Blog2ColumnContentLight = ({ sectionClass }: DataType) => {
                                 previousLabel={currentPage === 1 ? <i className='fas fa-ban'></i> : <i className='fas fa-angle-double-left'></i>}
                                 nextLabel={currentPage === totalPages ? <i className='fas fa-ban'></i> : <i className='fas fa-angle-double-right'></i>}
                                 breakLabel={'...'}
-                                pageCount={Math.ceil(BlogV3Data.length / itemsPerPage)}
+                                pageCount={2}
                                 marginPagesDisplayed={2}
                                 pageRangeDisplayed={5}
                                 onPageChange={handlePageClick}
@@ -70,6 +61,7 @@ const Blog2ColumnContentLight = ({ sectionClass }: DataType) => {
                                 pageLinkClassName={'page-link'}
                                 previousLinkClassName={'page-link'}
                                 nextLinkClassName={'page-link'}
+
                             />
                         </div>
                     </div>

@@ -8,7 +8,7 @@ const TeamPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Team</title>
+                <title>GroPro Rise - Team</title>
             </Helmet>
 
             <LayoutV1>

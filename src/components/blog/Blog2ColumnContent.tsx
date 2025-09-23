@@ -3,6 +3,8 @@ import SingleBlog2Column from './SingleBlog2Column';
 import { useEffect, useState } from 'react';
 import Pagination from 'react-paginate';
 import { useNavigate, useParams } from 'react-router-dom';
+import { BlogItem } from "../../types/cms";
+import { getBlog } from "../../api/strapi";
 
 interface DataType {
     sectionClass?: string
@@ -39,18 +41,34 @@ const Blog2ColumnContent = ({ sectionClass }: DataType) => {
         }, 200);
     };
 
-    const totalPages = Math.ceil(BlogV3Data.length / itemsPerPage);
+    const [blogs, setBlogs] = useState<BlogItem[]>([]);
 
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const res = await getBlog();
+                setBlogs(res.data.Blog); // 
+            } catch (err) {
+                console.error("Error fetching blogs:", err);
+            }
+        };
+        fetchBlogs();
+    }, []);
+
+    const totalPages = Math.ceil(BlogV3Data.length / itemsPerPage);
     return (
         <>
             <div className={`blog-area blog-grid-colum ${sectionClass ? sectionClass : ""}`}>
                 <div className="container">
                     <div className="row">
-                        {currentBlogData.map(blog =>
-                            <div className="col-lg-6 mb-50" key={blog.id}>
-                                <SingleBlog2Column blog={blog} />
+                        {blogs.slice(0, 2).map((blog) => (
+                            <div className="col-lg-6 mb-50" key={blog.Blog_id}>
+                                <SingleBlog2Column  />
                             </div>
-                        )}
+
+                        ))}
+
+
                     </div>
 
                     {/* Pagination */}

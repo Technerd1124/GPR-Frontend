@@ -16,7 +16,7 @@ const TeamDetailsPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Team Details</title>
+                <title>GroPro Rise - Team Details</title>
             </Helmet>
 
             <LayoutV1>

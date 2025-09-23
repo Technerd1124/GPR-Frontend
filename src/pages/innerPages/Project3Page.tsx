@@ -8,7 +8,7 @@ const Project3Page = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Project 3</title>
+                <title>GroPro Rise - Project 3</title>
             </Helmet>
 
             <div className="project-page">

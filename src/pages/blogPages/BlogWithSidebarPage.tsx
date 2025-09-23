@@ -8,7 +8,7 @@ const BlogWithSidebarPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Blog With Sideba</title>
+                <title>GroPro Rise - Blog With Sideba</title>
             </Helmet>
 
             <LayoutV1>

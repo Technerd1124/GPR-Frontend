@@ -1,6 +1,6 @@
 /* ----------------------------------
 
-Template Name: Dixor - Creative Digital Agency React Template 
+Template Name: GroPro Rise - Creative Digital Agency React Template 
 Author: validthemes
 Description:
 Version: 1.1
@@ -339,7 +339,7 @@ strong {
 }
 
 .row {
-  --bs-gutter-x: 30px;
+  --bs-gutter-x: 47px;
 }
 
 @media (min-width: 1400px) {
@@ -6329,7 +6329,7 @@ ul.list-style-two li:last-child {
 }
 
 /* ============================================================== 
-    # About Style Three
+    # About Style Three 
 =================================================================== */
 
 .thumb-style-three {
@@ -6847,6 +6847,13 @@ ul.service-list a span {
   top: 50px;
   transition: all 0.35s ease-in-out;
   color: var(--white);
+}
+
+/* remove this part: li:first-child a span,              =============================== DHANSHRIIIIIIIIIIIIIIIII01323232*/
+ul.service-list li a:hover span {
+  top: 10px;
+  opacity: 0;
+  visibility: hidden;
 }
 
 ul.service-list li:first-child a span,
@@ -11002,8 +11009,8 @@ ul.contact-list li .info {
 
 /* Each Panel = Full Screen */
 .panel {
-  flex: 0 0 100vw;  /* exactly one viewport width */
-  height: 100vh;    /* full height */
+  flex: 0 0 100vw; /* exactly one viewport width */
+  height: 100vh; /* full height */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11021,7 +11028,6 @@ ul.contact-list li .info {
   position: relative;
   z-index: 1;
 }
-
 
 /* .award-items {
   display: flex;
@@ -11041,7 +11047,6 @@ ul.contact-list li .info {
   position: relative;
   z-index: 1;
 }
-
 
 .award-item {
   padding: 50px;
@@ -12774,7 +12779,7 @@ ul.list-disc li {
 .home-blog-one .date {
   position: absolute;
   left: 40px;
-  top: 40px;
+  top: 30px;
   background: var(--bg-gradient);
   padding: 6px 20px;
   font-weight: 600;
@@ -12797,6 +12802,7 @@ ul.list-disc li {
 
 .home-blog-two .thumb img {
   border-radius: 10px;
+  width: 100px;
 }
 
 .home-blog-two .info .content {
@@ -12814,8 +12820,8 @@ ul.list-disc li {
 
 .home-blog-two .info {
   position: relative;
-  padding-left: 150px;
-  top: -80px;
+  padding-left: 100px;
+  top: -90px;
   margin-bottom: -80px;
   padding-right: 30px;
 }
@@ -14524,7 +14530,7 @@ ul.footer-social li a img {
 
   /* Banner Style Eight */
   .banner-style-eight-heading h2 {
-    font-size: 120px;
+    font-size: 100px;
   }
 
   .banner-style-eight-heading {
@@ -17409,7 +17415,6 @@ ul.footer-social li a img {
   }
 
   /* Home Blog */
-
   .home-blog-style-one {
     display: block;
     border: 1px solid #e7e7e7;
@@ -17420,7 +17425,6 @@ ul.footer-social li a img {
   .home-blog-style-one .thumb {
     margin: 0;
   }
-
   .home-blog-style-one::after {
     display: none;
   }
@@ -17791,7 +17795,7 @@ ul.footer-social li a img {
   z-index: 999;
 }
 
-.dixor-loader-wrap {
+.GroPro Rise-loader-wrap {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -17800,7 +17804,7 @@ ul.footer-social li a img {
   width: 100%;
 }
 
-.dixor-loader-inner {
+.GroPro Rise-loader-inner {
   position: fixed;
   width: 100%;
   display: inline-flex;
@@ -17809,69 +17813,69 @@ ul.footer-social li a img {
   height: 100vh;
 }
 
-.dixor-loader {
+.GroPro Rise-loader {
   margin-left: 92px;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px),
   (max-width: 575px) {
-  .dixor-loader {
+  .GroPro Rise-loader {
     transform: scale(0.8);
     margin-left: 66px;
   }
 }
 
-.dixor-loader-item {
+.GroPro Rise-loader-item {
   position: absolute;
   width: 6px;
   height: 80px;
   margin-top: -45px;
   border-radius: 0px;
   background-color: var(--color-primary);
-  animation: dixor-loader-aim 0.8s infinite;
+  animation: GroPro Rise-loader-aim 0.8s infinite;
   animation-direction: alternate-reverse;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(1) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(1) {
   margin-left: 0px;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(2) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(2) {
   margin-left: -14px;
   animation-delay: 0.1s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(3) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(3) {
   margin-left: -28px;
   animation-delay: 0.2s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(4) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(4) {
   margin-left: -42px;
   animation-delay: 0.3s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(5) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(5) {
   margin-left: -56px;
   animation-delay: 0.4s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(6) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(6) {
   margin-left: -70px;
   animation-delay: 0.5s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(7) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(7) {
   margin-left: -84px;
   animation-delay: 0.6s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(8) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(8) {
   margin-left: -98px;
   animation-delay: 0.7s;
 }
 
-@keyframes dixor-loader-aim {
+@keyframes GroPro Rise-loader-aim {
   0% {
     height: 2px;
     margin-top: 0;
@@ -18050,12 +18054,14 @@ button.Toastify__close-button {
   #navbar-menu ul li.dropdown:hover > ul.dropdown-menu {
     opacity: 1;
     visibility: visible;
+
     top: 100%;
   }
 }
 
 .dropdown.on > .dropdown-menu {
-  display: block;
+  display: inline-flex;
+  width: 100%;
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1399px) {

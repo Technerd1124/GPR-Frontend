@@ -1,6 +1,6 @@
 /* ----------------------------------
 
-Template Name: Dixor - Creative Digital Agency React Template 
+Template Name: GroPro Rise - Creative Digital Agency React Template 
 Author: validthemes
 Description:
 Version: 1.1
@@ -17787,7 +17787,7 @@ ul.footer-social li a img {
   z-index: 999;
 }
 
-.dixor-loader-wrap {
+.GroPro Rise-loader-wrap {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -17796,7 +17796,7 @@ ul.footer-social li a img {
   width: 100%;
 }
 
-.dixor-loader-inner {
+.GroPro Rise-loader-inner {
   position: fixed;
   width: 100%;
   display: inline-flex;
@@ -17805,69 +17805,69 @@ ul.footer-social li a img {
   height: 100vh;
 }
 
-.dixor-loader {
+.GroPro Rise-loader {
   margin-left: 92px;
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px),
   (max-width: 575px) {
-  .dixor-loader {
+  .GroPro Rise-loader {
     transform: scale(0.8);
     margin-left: 66px;
   }
 }
 
-.dixor-loader-item {
+.GroPro Rise-loader-item {
   position: absolute;
   width: 6px;
   height: 80px;
   margin-top: -45px;
   border-radius: 0px;
   background-color: var(--color-primary);
-  animation: dixor-loader-aim 0.8s infinite;
+  animation: GroPro Rise-loader-aim 0.8s infinite;
   animation-direction: alternate-reverse;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(1) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(1) {
   margin-left: 0px;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(2) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(2) {
   margin-left: -14px;
   animation-delay: 0.1s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(3) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(3) {
   margin-left: -28px;
   animation-delay: 0.2s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(4) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(4) {
   margin-left: -42px;
   animation-delay: 0.3s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(5) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(5) {
   margin-left: -56px;
   animation-delay: 0.4s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(6) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(6) {
   margin-left: -70px;
   animation-delay: 0.5s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(7) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(7) {
   margin-left: -84px;
   animation-delay: 0.6s;
 }
 
-.dixor-loader .dixor-loader-item:nth-child(8) {
+.GroPro Rise-loader .GroPro Rise-loader-item:nth-child(8) {
   margin-left: -98px;
   animation-delay: 0.7s;
 }
 
-@keyframes dixor-loader-aim {
+@keyframes GroPro Rise-loader-aim {
   0% {
     height: 2px;
     margin-top: 0;

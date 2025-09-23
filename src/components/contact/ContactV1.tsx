@@ -1,11 +1,28 @@
 import ContactForm from "../form/ContactForm";
-import SocialShareV2 from "../social/SocialShareV2";
-
+import { useEffect, useState } from "react";
+import { ContactSidebarData } from "../../types/cms";
+import { getSidebar } from "../../api/strapi";
+import SocialShareV3 from "../social/SocialShareV3";
 interface DataType {
     sectionClass?: string
 }
 
 const ContactV1 = ({ sectionClass }: DataType) => {
+    const [contactData, setContactData] = useState<ContactSidebarData | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getSidebar();
+                setContactData(res.data);
+            } catch (err) {
+                console.error("Error fetching SideBar :", err);
+            }
+        };
+        fetchData();
+    }, []);
+
+    if (!contactData) return null;
     return (
         <>
             <div className={`contact-area overflow-hidden relative ${sectionClass ? sectionClass : ""}`}>
@@ -13,34 +30,37 @@ const ContactV1 = ({ sectionClass }: DataType) => {
                     <div className="contact-style-one-items">
                         <div className="row">
                             <div className="col-tact-stye-one col-lg-4">
+
                                 <div className="contact-style-one-info">
                                     <ul className="contact-address">
                                         <li>
-                                            <a className="phone-link" href="tel:+4733378901"><i className="fas fa-user-headset" /> +4733378901</a>
+                                            <a className="phone-link" href={`tel:+${contactData.ContactData[2].value}`}><i className="fas fa-user-headset" />{contactData.ContactData[2].value}</a>
                                         </li>
                                         <li>
                                             <div className="info">
                                                 <h4>Location</h4>
                                                 <p>
-                                                    55 Main Street, The Grand Avenue <br /> 2nd Block, New York City
+                                                    {contactData.ContactData[0].value}
                                                 </p>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="info">
                                                 <h4>Official Email</h4>
-                                                <a href="mailto:info@digital.com.com">info@digital.com</a>
+                                                <a href="mailto:info@digital.com.com">{contactData.ContactData[1].value}</a>
                                             </div>
                                         </li>
                                         <li>
                                             <div className="info">
                                                 <ul className="social-link">
-                                                    <SocialShareV2 />
+                                                    <SocialShareV3 />
                                                 </ul>
                                             </div>
                                         </li>
                                     </ul>
                                 </div>
+
+
                             </div>
                             <div className="col-tact-stye-one col-lg-7 offset-lg-1">
                                 <div className="contact-form-style-one">

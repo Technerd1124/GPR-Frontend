@@ -18,7 +18,7 @@
 //     return (
 //         <>
 //             <Helmet>
-//                 <title>Dixor - Creative Digital Agency</title>
+//                 <title>GroPro Rise - Creative Digital Agency</title>
 //             </Helmet>
 
 //             <div className="smooth-scroll-container">

@@ -6,12 +6,13 @@ import LayoutV1Light from "../../components/layouts/LayoutV1Light";
 import PartnerV2 from "../../components/partner/PartnerV2";
 import TeamV1 from "../../components/team/TeamV1";
 import TestimonialV3 from "../../components/testimonial/TestimonialV3";
+import ClientsV1 from "../../components/clients/ClientsV1";
 
 const AboutUsLightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - About Us Light</title>
+                <title>GroPro Rise - About Us Light</title>
             </Helmet>
 
             <LayoutV1Light>
@@ -19,6 +20,7 @@ const AboutUsLightPage = () => {
                 <AboutV6 lightMode={true} />
                 <FunFactV1 sectionClass='default-padding-bottom' />
                 <PartnerV2 sectionClass='bg-gray' />
+                <ClientsV1 />
                 <TeamV1 hasTitle={true} />
                 <TestimonialV3 />
             </LayoutV1Light>

@@ -1,14 +1,21 @@
 
 // types/header.ts
 
+
+export interface submenu { 
+   Label:string;
+   url:string;
+   IDno:number;
+}
+
 export interface SubLink {
   id: number;
   Label: string;
   url: string | null;
   isButton: boolean;
   ButtonType: string | null;
+  Submenu:submenu[];
 }
-
 export interface NavLink {
   id: number;
   Label: string;
@@ -366,7 +373,9 @@ export type Testimonial = {
 
         // ✅ Single blog item
         export interface BlogItem {
-          id: number;
+          description: string;
+          publishedAt: any;
+          Blog_id: number;
           author: string;
           BlogTitle: string;
           Date: string;

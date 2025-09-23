@@ -12,7 +12,7 @@ const Services2Page = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Services 2</title>
+                <title>GroPro Rise - Services 2</title>
             </Helmet>
 
             <LayoutV1>

@@ -42,9 +42,7 @@ const Routers = () => {
     <Routes>
 
       {/* Redirect all default/dark paths to light versions instantly */}
-      <Route path="/" element={<Navigate to="/home-1-light" replace />} />
-   
-
+      <Route path="/" element={<Navigate to="/home" replace />} />
       <Route path="/about-us" element={<Navigate to="/about-us-light" replace />} />
       <Route path="/about-2" element={<Navigate to="/about-2-light" replace />} />
       <Route path="/team" element={<Navigate to="/team-light" replace />} />
@@ -71,7 +69,7 @@ const Routers = () => {
       <Route path="/blog-single-with-sidebar/:id" element={<Navigate to="/blog-single-with-sidebar-light/:id" replace />} />
 
       {/* Light Versions */}
-      <Route path="/home-1-light" element={<Home1Light />} />
+      <Route path="/home" element={<Home1Light />} />
       {/* <Route path="/home-2-light" element={<Home2Light />} />
       <Route path="/home-3-light" element={<Home3Light />} />
       <Route path="/home-4-light" element={<Home4Light />} />
@@ -103,7 +101,7 @@ const Routers = () => {
       <Route path="/blog-with-sidebar-light" element={<BlogWithSidebarLightPage />} />
       <Route path="/blog-2-column-light" element={<Blog2ColumnLightPage />} />
       <Route path="/blog-3-column-light" element={<Blog3ColumnLightPage />} />
-      <Route path="/blog-single-light/:id" element={<BlogSingleLightPage />} />
+      <Route path="/blog-single-light" element={<BlogSingleLightPage />} />
       <Route path="/blog-single-with-sidebar-light/:id" element={<BlogSingleWithSidebarLightPage />} />
 
       <Route path="*" element={<NotFoundPage />} />

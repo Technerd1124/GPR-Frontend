@@ -5,13 +5,13 @@ import FunFactV1 from "../../components/fact/FunFactV1";
 import LayoutV1Light from "../../components/layouts/LayoutV1Light";
 import PriceV1 from "../../components/price/PriceV1";
 import ServicesV2 from "../../components/services/ServicesV2";
-import TestimonialV2 from "../../components/testimonial/TestimonialV2";
+import TestimonialV3 from "../../components/testimonial/TestimonialV3";
 
 const Services2LightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Services 2 Light</title>
+                <title> GrowPro Rise | services </title>
             </Helmet>
 
             <LayoutV1Light>
@@ -19,7 +19,7 @@ const Services2LightPage = () => {
                 <ServicesV2 />
                 <FunFactV1 sectionClass='default-padding' />
                 <ClientsV1 sectionClass='bg-gray' />
-                <TestimonialV2 />
+                <TestimonialV3 />
                 <PriceV1 sectionClass='bg-gray' />
             </LayoutV1Light>
         </>

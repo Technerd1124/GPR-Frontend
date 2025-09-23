@@ -7,7 +7,7 @@ const Project3LightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Project 3 Light</title>
+                <title>GroPro Rise - Project 3 Light</title>
             </Helmet>
 
             <div className="project-page">

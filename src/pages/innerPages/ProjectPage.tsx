@@ -8,7 +8,7 @@ const ProjectPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Project</title>
+                <title>GroPro Rise - Project</title>
             </Helmet>
 
             <LayoutV1>

@@ -8,7 +8,7 @@ const Blog3ColumnPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Blog 3 Column</title>
+                <title>GroPro Rise - Blog 3 Column</title>
             </Helmet>
 
             <LayoutV1>

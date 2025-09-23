@@ -13,7 +13,7 @@ const BlogSingleWithSidebarLightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Blog Single With Sidebar Light</title>
+                <title>GroPro Rise - Blog Single With Sidebar Light</title>
             </Helmet>
 
             <LayoutV1Light>

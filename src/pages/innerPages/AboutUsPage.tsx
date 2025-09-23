@@ -12,7 +12,7 @@ const AboutUsPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - About Us</title>
+                <title>GroPro Rise - About Us</title>
             </Helmet>
 
             <LayoutV1>

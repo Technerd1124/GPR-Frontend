@@ -13,7 +13,7 @@ const ProjectDetailsLightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Project Details Light</title>
+                <title>GroPro Rise - Project Details Light</title>
             </Helmet>
 
             <LayoutV1Light>

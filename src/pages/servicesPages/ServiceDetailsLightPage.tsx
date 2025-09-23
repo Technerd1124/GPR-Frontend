@@ -13,7 +13,7 @@ const ServiceDetailsLightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Service Details Light</title>
+                <title>GroPro Rise - Service Details Light</title>
             </Helmet>
 
             <LayoutV1Light>

@@ -4,11 +4,13 @@ import ContactV1 from "../../components/contact/ContactV1";
 import LayoutV1Light from "../../components/layouts/LayoutV1Light";
 import ContactMap from "../../components/map/ContactMap";
 
+
 const ContactUsLightPage = () => {
+   
     return (
         <>
             <Helmet>
-                <title>Dixor - Contact Us Light</title>
+                <title> GroPro Rise | Contacts </title>
             </Helmet>
 
             <LayoutV1Light>

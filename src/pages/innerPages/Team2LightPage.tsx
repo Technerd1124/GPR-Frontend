@@ -8,7 +8,7 @@ const Team2LightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Team 2 Light</title>
+                <title>GroPro Rise - Team 2 Light</title>
             </Helmet>
 
             <LayoutV1Light>

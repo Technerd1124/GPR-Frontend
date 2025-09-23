@@ -53,15 +53,14 @@ const SidebarInfo = ({ openInfoBar, isInfoOpen, closeInfoBar }: SidebarInfoProps
                         <div className="widget address">
                             <div>
                                 <ul>
-                                    {SideBarData.ContactData.map((item,i) => (
-                                      
+                                    {SideBarData.ContactData.map((item, i) => (
+
                                         <li key={item.id || i} >
                                             <div className="content">
                                                 <p> {item.Label}</p>
                                                 <strong>{item.value}</strong>
                                             </div>
                                         </li>
-                                        
                                     ))
                                     }
 

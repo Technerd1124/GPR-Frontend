@@ -13,7 +13,7 @@ const BlogSingleLightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Blog Single Light</title>
+                <title>GroPro Rise - Blog Single Light</title>
             </Helmet>
 
             <LayoutV1Light>

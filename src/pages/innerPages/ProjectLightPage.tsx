@@ -7,7 +7,7 @@ const ProjectLightPage = () => {
     return (
         <>
             <Helmet>
-                <title>Dixor - Project Light</title>
+                <title>GroPro Rise - Project Light</title>
             </Helmet>
 
             <LayoutV1Light>
