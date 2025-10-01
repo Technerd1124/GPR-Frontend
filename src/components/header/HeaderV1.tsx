@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import MainMenu from './MainMenu';
 import SidebarInfo from './SidebarInfo';
-import logo from '/assets/img/LogoGpr.svg';
+import logo from '/assets/img/LogoGpr.svg'; 
 import useSidebarMenu from "../../hooks/useSidebarMenu";
 import useSubMenuToggle from "../../hooks/useSubMenuToggle";
 import useSidebarInfo from "../../hooks/useSidebarInfo";
@@ -11,7 +11,6 @@ import { HeaderData } from "../../types/cms";
 import { useEffect, useState } from "react";
 
 const HeaderV1 = () => {
-
     const { isOpen, openMenu, closeMenu } = useSidebarMenu();
     const toggleSubMenu = useSubMenuToggle();
     const { isInfoOpen, openInfoBar, closeInfoBar } = useSidebarInfo();
@@ -41,7 +40,7 @@ const HeaderV1 = () => {
                                 <i className="fa fa-bars" />
                             </button>
                             <Link className="navbar-brand" to="/">
-                                {/* <img src={header.logo_gpr.logo_img.url} className="logo logo-display logo-scrolled" alt="Logo" /> */}
+                           
                                 <img src={logo} className="logo logo-display logo-scrolled" alt="Logo" />
 
                             </Link>

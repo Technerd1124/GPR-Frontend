@@ -10,6 +10,7 @@ interface Props {
 
 const MainMenu = ({ navbarPlacement, toggleSubMenu }: Props) => {
   const [header, setHeader] = useState<HeaderData | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,61 +28,92 @@ const MainMenu = ({ navbarPlacement, toggleSubMenu }: Props) => {
 
   return (
     <ul
-      className={`nav navbar-nav ${navbarPlacement ? navbarPlacement : ""}`}
-      data-in="fadeInDown"
-      data-out="fadeOutUp"
+      style={{ listStyle: "none", margin: 0, padding: 0, display: "flex" }}
     >
-      {header.NAVLINK.map((link) => (
-        <li
-          key={link.id}
-          className={link.SubLinks.length > 0 ? "dropdown" : ""}
-        >
-          <Link
-            to={link.URL || "#"}
-            className={link.SubLinks.length > 0 ? "dropdown-toggle" : ""}
-            data-toggle={link.SubLinks.length > 0 ? "dropdown" : undefined}
-            onClick={
-              link.SubLinks.length > 0 && toggleSubMenu ? toggleSubMenu : undefined
-            }
+      {header.NAVLINK.map((link, index) => {
+        const hasSubLinks = link.SubLinks?.length > 0;
+
+        return (
+          <li
+            key={link.id}
+            style={{ position: "relative", marginRight: "20px" }}
+            onMouseEnter={() => setHoveredIndex(hasSubLinks ? index : null)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
-            {link.Label}
-          </Link>
+            <Link
+              to={link.URL || "#"}
+              onClick={
+                hasSubLinks && toggleSubMenu ? toggleSubMenu : undefined
+              }
+              style={{ textDecoration: "none", color: "#000", padding: "10px" }}
+            >
+              {link.Label}
+            </Link>
 
-          {/* SubLinks dropdown */}
-          {link.SubLinks.length > 0 && (
-            <ul className="dropdown-menu">
-              {link.SubLinks.map((sub) => (
-                <li
-                  key={sub.id}
-                  className={sub.Submenu?.length > 0 ? "dropdown" : ""}
-                >
-                  <Link
-                    to={sub.url || sub.url || "#"}
-                    className={sub.Submenu?.length > 0 ? "dropdown-toggle" : ""}
-                    data-toggle={sub.Submenu?.length > 0 ? "dropdown" : undefined}
-                    onClick={
-                      sub.Submenu?.length > 0 && toggleSubMenu ? toggleSubMenu : undefined
-                    }
+            {hasSubLinks && hoveredIndex === index && (
+              <ul
+                style={{
+                  position: "static",
+                  top: "0%",
+                  left: 0,
+                  width: "100vw",
+                  margin: 0,
+                  padding: "20px 40px",
+                  backgroundColor: "#fffefeff",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  zIndex: 1000,
+                  listStyle: "none",
+                }}
+              >
+                {link.SubLinks.map((sub) => (
+                  <li
+                    key={sub.id}
+                    style={{ marginRight: "40px", minWidth: "150px" }}
                   >
-                    {sub.Label}
-                  </Link>
+                    {sub.Submenu?.length > 0 ? (
+                      <>
+                        <h4 style={{ color: "#ffffffff", marginBottom: "10px" }}>
+                          {sub.Label}
+                        </h4>
+                        <div>
 
-                  {/* Submenu inside SubLinks */}
-                  {sub.Submenu?.length > 0 && (
-                    <ul className="dropdown-menu">
-                      {sub.Submenu.map((child) => (
-                        <li key={child.IDno}>
-                          <Link to={child.url || "#"}>{child.Label}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
+                          {sub.Submenu.map((child) => (
+                            <Link
+                              key={child.IDno}
+                              to={child.url || "#"}
+                              style={{
+                                // display: "block",
+                                color: "#020202ff",
+                                textDecoration: "none",
+                                padding: "5px 0",
+                              }}
+                            >
+                              {child.Label}
+                            </Link>
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <Link
+                        to={sub.url || "#"}
+                        style={{
+                          display: "block",
+                          color: "#090808ff",
+                          textDecoration: "none",
+                          padding: "5px 0",
+                        }}
+                      >
+                        {sub.Label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 };

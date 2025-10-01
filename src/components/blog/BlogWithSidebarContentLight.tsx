@@ -1,4 +1,6 @@
 import BlogData from '../../../src/assets/jsonData/blog/BlogData.json';
+import { getBlog } from '../../api/strapi';
+import { BlogItem } from '../../types/cms';
 import ArchiveWidget from '../widgets/ArchiveWidget';
 import CategoryWidget from '../widgets/CategoryWidget';
 import FollowWidget from '../widgets/FollowWidget';
@@ -17,6 +19,21 @@ interface DataType {
 
 const BlogWithSidebarContentLight = ({ sectionClass }: DataType) => {
 
+    // Fetching  Strapi Data Hare  With the Predefinaed FUnctions  : 
+
+      const [blogs, setBlogs] = useState<BlogItem[]>([]);
+     
+         useEffect(() => {
+             const fetchBlogs = async () => {
+                 try {
+                     const res = await getBlog();
+                     setBlogs(res.data.Blog); // 
+                 } catch (err) {
+                     console.error("Error fetching blogs:", err);
+                 }
+             };
+             fetchBlogs();
+         }, []);
     // Pagination 
     const navigate = useNavigate();
     const { page } = useParams<{ page?: string }>();
@@ -32,7 +49,7 @@ const BlogWithSidebarContentLight = ({ sectionClass }: DataType) => {
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const currentBlogData = BlogData.slice(startIndex, endIndex);
+    const currentBlogData = blogs.slice(startIndex, endIndex);
 
     const handlePageClick = (data: any) => {
         const selectedPage = data.selected + 1;
@@ -57,7 +74,7 @@ const BlogWithSidebarContentLight = ({ sectionClass }: DataType) => {
                             <div className="blog-content col-xl-8 col-lg-7 col-md-12 pr-35 pr-md-15 pl-md-15 pr-xs-15 pl-xs-15">
                                 <div className="blog-item-box">
                                     {currentBlogData.map(blog =>
-                                        <SingleBlogStandardLight blog={blog} key={blog.id} />
+                                        <SingleBlogStandardLight blog={blog} key={blog.Blog_id} />
                                     )}
                                 </div>
 

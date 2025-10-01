@@ -25,7 +25,7 @@ const Home1Light = () => {
                 <AboutV6 lightMode={true} />
                 <ServicesV1 sectionClass='bg-gray default-padding' hasTitle={true} />
                 <ProjectV1Light />
-                <TeamV1 hasTitle={true} />
+                {/* <TeamV1 hasTitle={true} /> */}
                 <ClientsV1 sectionClass='bg-dark' />
                 <TestimonialV3 sectionClass='bg-gray' />
                 <div className="panel overflow-hidden">

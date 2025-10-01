@@ -4,12 +4,29 @@ import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import LayoutV1Light from "../../components/layouts/LayoutV1Light";
 import BlogV3Data from "../../../src/assets/jsonData/blog/BlogV3Data.json"
 import { Helmet } from "react-helmet-async";
+import { BlogItem } from "../../types/cms";
+import { useEffect, useState } from "react";
+import { getBlog } from "../../api/strapi";
 
+
+   
 const BlogSingleLightPage = () => {
-
     const { id } = useParams();
-    const data = BlogV3Data.find(portfolio => portfolio.id === parseInt(id || '0'));
-
+    const [blogs, setBlogs] = useState<BlogItem[]>([]);
+    
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const res = await getBlog();
+                setBlogs(res.data.Blog); // 
+            } catch (err) {
+                console.error("Error fetching blogs:", err);
+            }
+        };
+        fetchBlogs();
+    }, []);
+    
+    const data = blogs.find(portfolio => portfolio.Blog_id === parseInt(id || '0'));
     return (
         <>
             <Helmet>

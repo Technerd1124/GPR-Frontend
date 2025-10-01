@@ -36,13 +36,12 @@ const SingleBlogV2: React.FC<Props> = ({ blog }) => {
             </ul>
           </div>
           <h3 className="post-title">
-            <Link to={"/blog-2-column"}>
+            <Link to={"/blog-3-column-light"}>
               {blog.BlogTitle}
             </Link>
           </h3>
-
           <Link
-            to={'/blog-single-light'}
+            to={`/blog-single-with-sidebar-light/1`}
             className="button-regular"
           >
             Continue Reading <i className="fas fa-arrow-right" />
