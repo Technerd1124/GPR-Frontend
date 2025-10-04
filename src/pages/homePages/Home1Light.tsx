@@ -12,6 +12,7 @@ import TestimonialV3 from "../../components/testimonial/TestimonialV3";
 import WhyChooseV1 from "../../components/whyChoose/WhyChooseV1";
 import ExpertiseV1 from "../../components/expertise/ExpertiseV1";
 import ProjectIdeaV1 from "../../components/project/ProjectIdeaV1";
+import BlogV1 from "../../components/blog/BlogV1";
 
 const Home1Light = () => {
     return (
@@ -37,7 +38,8 @@ const Home1Light = () => {
                 <div className="panel contact-panel overflow-hidden">
                     <ProjectIdeaV1 />
                 </div>
-                <BlogV2 sectionClass='bg-gray' />
+                {/* <BlogV2 sectionClass='bg-gray' /> */}
+                <BlogV1 sectionClass='bg-gray' />
                 <FooterV1 />
             </div>
         </>

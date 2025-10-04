@@ -14,7 +14,7 @@ const BlogV2 = ({ sectionClass }: DataType) => {
         const fetchBlogs = async () => {
             try {
                 const res = await getBlog();
-                setBlogs(res.data.Blog); // 
+                setBlogs(res.data.Blog); 
             } catch (err) {
                 console.error("Error fetching blogs:", err);
             }

@@ -1,12 +1,37 @@
 import BlogV1Data from '../../../src/assets/jsonData/blog/BlogV1Data.json';
 import SingleBlogV1 from './SingleBlogV1';
 import SplitText from "../animation/SplitText.jsx"
+import { BlogItem } from '../../types/cms.js';
+import { useEffect, useState } from 'react';
+import { getBlog } from '../../api/strapi.js';
 
 interface DataType {
     sectionClass?: string
 }
 
+interface DataType {
+    sectionClass?: string;
+}
+
+  
 const BlogV1 = ({ sectionClass }: DataType) => {
+ 
+     const [blogs, setBlogs] = useState<BlogItem[]>([]);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const res = await getBlog();
+                setBlogs(res.data.Blog); 
+            } catch (err) {
+                console.error("Error fetching blogs:", err);
+            }
+        };
+        fetchBlogs();
+    }, []);
+
+        if (!blogs) return null;
+
     return (
         <>
             <div className={`blog-area home-blog blog-style-one-area default-padding bottom-less ${sectionClass ? sectionClass : ""}`}>

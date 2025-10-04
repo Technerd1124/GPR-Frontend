@@ -4,7 +4,6 @@ import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import FunFactV1 from "../../components/fact/FunFactV1";
 import LayoutV1Light from "../../components/layouts/LayoutV1Light";
 import PartnerV2 from "../../components/partner/PartnerV2";
-import TeamV1 from "../../components/team/TeamV1";
 import TestimonialV3 from "../../components/testimonial/TestimonialV3";
 import ClientsV1 from "../../components/clients/ClientsV1";
 
@@ -21,7 +20,6 @@ const AboutUsLightPage = () => {
                 <FunFactV1 sectionClass='default-padding-bottom' />
                 <PartnerV2 sectionClass='bg-gray' />
                 <ClientsV1 />
-                <TeamV1 hasTitle={true} />
                 <TestimonialV3 />
             </LayoutV1Light>
         </>

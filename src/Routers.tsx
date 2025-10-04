@@ -1,6 +1,6 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home1Light from "./pages/homePages/Home1Light";
-// import Home2Light from "./pages/homePages/Home2Light";
+import Home2Light from "./pages/homePages/Home2Light";
 // import Home3Light from "./pages/homePages/Home3Light";
 // import Home4Light from "./pages/homePages/Home4Light";
 // import Home5Light from "./pages/homePages/Home5Light";
@@ -70,8 +70,8 @@ const Routers = () => {
 
       {/* Light Versions */}
       <Route path="/home" element={<Home1Light />} />
-      {/* <Route path="/home-2-light" element={<Home2Light />} />
-      <Route path="/home-3-light" element={<Home3Light />} />
+      <Route path="/home-2-light" element={<Home2Light />} />
+      {/* <Route path="/home-3-light" element={<Home3Light />} />
       <Route path="/home-4-light" element={<Home4Light />} />
       <Route path="/home-5-light" element={<Home5Light />} />
       <Route path="/home-6-light" element={<Home6Light />} />

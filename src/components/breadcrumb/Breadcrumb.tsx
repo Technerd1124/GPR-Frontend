@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 interface DataType {
     title?: string;
     breadCrumb?: string;
-    LightMode?: boolean
+    LightMode?: boolean;
 }
 
 const Breadcrumb = ({ title, breadCrumb, LightMode }: DataType) => {
     return (
         <>
             <div className={`breadcrumb-area text-center ${LightMode ? "bg-gray" : "bg-dark"}`}
-                style={{ backgroundImage: `url(/assets/img/shape/${LightMode ? "6.jpg" : "10.jpg"})` }}>
+            >
                 <div className="container">
                     <div className="breadcrumb-item">
                         <div className="row">
