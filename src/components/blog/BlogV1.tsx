@@ -15,9 +15,7 @@ interface DataType {
 
   
 const BlogV1 = ({ sectionClass }: DataType) => {
- 
      const [blogs, setBlogs] = useState<BlogItem[]>([]);
-
     useEffect(() => {
         const fetchBlogs = async () => {
             try {

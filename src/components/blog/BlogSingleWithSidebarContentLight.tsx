@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import team1Thumb from "/assets/img/team/9.jpg"
+import team1Thumb from "/assets/img/team/9.jpg";
 import BlogPostComments from './BlogPostComments';
 import BlogCommentForm from './BlogCommentForm';
 import handleSmoothScroll from '../utilities/handleSmoothScroll';
 import SocialShareV3 from '../social/SocialShareV3';
-import BlogV3Data from "../../../src/assets/jsonData/blog/BlogV3Data.json";
 import SearchWidget from '../widgets/SearchWidget';
 import CategoryWidget from '../widgets/CategoryWidget';
 import GalleryWidget from '../widgets/GalleryWidget';
@@ -12,51 +11,95 @@ import ArchiveWidget from '../widgets/ArchiveWidget';
 import FollowWidget from '../widgets/FollowWidget';
 import TagsWidget from '../widgets/TagsWidget';
 import RecentPostsWidgetLight from '../widgets/RecentPostsWidgetLight';
+import { MEDIA_URL } from "../../api/strapi";
+
+interface BlogContentChild {
+    type: "text";
+    text: string;
+    bold?: boolean;
+}
+
+interface BlogContentBlock {
+    type: "paragraph";
+    children: BlogContentChild[];
+}
+
+interface BlogMedia {
+    url: string;
+    // Additional fields if needed
+}
 
 interface DataType {
-    id?: number;
-    date?: string;
-    dateIcon?: string;
-    thumbFull?: string;
-    author?: string;
+    Blog_Id: number;
+    BlogTitle: string;
+    author: string;
+    Date: string;
+    BlogMedia?: BlogMedia;
+    BlogContent: BlogContentBlock[];
 }
 
 interface BlogSingleProps {
     blogInfo?: DataType;
     totalBlogs?: number;
     sectionClass?: string;
+    allBlogs?: DataType[];
 }
 
-const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass }: BlogSingleProps) => {
-    const { id, date, dateIcon, thumbFull, author } = blogInfo || {};
+const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass, allBlogs }: BlogSingleProps) => {
+    if (!blogInfo) return null;
 
-    // Blogs Navigation 
-    const currentId = id ? parseInt(id.toString(), 10) : 1;
+    const { Blog_Id, BlogTitle, author, Date, BlogMedia, BlogContent } = blogInfo;
 
-    // Calculate the previous and next IDs dynamically
-    const previousId = currentId === 1 ? totalBlogs : currentId - 1;
-    const nextId = currentId === totalBlogs ? 1 : currentId + 1;
+    const currentId = Blog_Id;
+    const previousId = currentId === 1 ? (totalBlogs ?? 1) : currentId - 1;
+    const nextId = currentId === (totalBlogs ?? 1) ? 1 : currentId + 1;
 
-    // Get the previous and next project titles
-    const previousBlog = BlogV3Data.find((blog) => blog.id === previousId);
-    const nextBlog = BlogV3Data.find((blog) => blog.id === nextId);
+    const previousBlog = allBlogs?.find(blog => blog.Blog_Id === previousId);
+    const nextBlog = allBlogs?.find(blog => blog.Blog_Id === nextId);
 
-    // Get the first two words of the project title
-    const getFirstTwoWords = (text?: string) => text?.split(' ').slice(0, 2).join(' ') || "No Title";
+    const getFirstTwoWords = (text?: string) =>
+        text?.split(' ').slice(0, 2).join(' ') || "No Title";
+
+    // Function to render rich blog content from API's structured blocks
+    const renderBlogContent = (contentBlocks: BlogContentBlock[] = []) => {
+        return contentBlocks.map((block, idx) => {
+            if (block.type === "paragraph") {
+                return (
+                    <p key={idx}>
+                        {block.children.map((child, i) => (
+                            <span
+                                key={i}
+                                style={{ fontWeight: child.bold ? "bold" : "normal" }}
+                            >
+                                {child.text}
+                            </span>
+                        ))}
+                    </p>
+                );
+            }
+            // Extend here for other block types if any
+            return null;
+        });
+    };
 
     return (
         <>
-            <div className={`blog-area single full-blog right-sidebar full-blog ${sectionClass ? sectionClass : ""}`}>
+            <div className={`blog-area single full-blog right-sidebar full-blog ${sectionClass ?? ""}`}>
                 <div className="container">
                     <div className="blog-items">
                         <div className="row">
                             <div className="blog-content col-xl-8 col-lg-7 col-md-12 pr-35 pr-md-15 pl-md-15 pr-xs-15 pl-xs-15">
 
-                                {/* blog Single Post */}
+                                {/* Blog Single Post */}
                                 <div className="blog-style-one item">
                                     <div className="blog-item-box">
                                         <div className="thumb">
-                                            <img src={`/assets/img/blog/${thumbFull}`} width={1075} height={546} alt="Thumb" />
+                                            <img
+                                                src={BlogMedia ? `${MEDIA_URL}${BlogMedia.url}` : "/default-thumb.jpg"}
+                                                width={1075}
+                                                height={546}
+                                                alt={BlogTitle}
+                                            />
                                         </div>
                                         <div className="info">
                                             <div className="meta">
@@ -65,30 +108,14 @@ const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass 
                                                         <Link to="#"><i className="fas fa-user-circle" /> {author}</Link>
                                                     </li>
                                                     <li>
-                                                        <Link to="#"><i className={dateIcon}></i> {date}</Link>
+                                                        <Link to="#"><i className="fas fa-calendar-alt"></i> {Date}</Link>
                                                     </li>
                                                 </ul>
                                             </div>
-                                            <p>
-                                                Give lady of they such they sure it. Me contained explained my education. Vulgar as hearts by garret. Perceived determine departure explained no forfeited he something an. Contrasted dissimilar get joy you instrument out reasonably. Again keeps at no meant stuff. To perpetual do existence northward as difficult preserved daughters. Continued at up to zealously necessary breakfast. Surrounded sir motionless she end literature. Gay direction neglected but supported yet her.
 
-                                                New had happen unable uneasy. Drawings can followed improved out sociable not. Earnestly so do instantly pretended. See general few civilly amiable pleased account carried. Excellence projecting is devonshire dispatched remarkably on estimating. Side in so life past. Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new ham melancholy son themselves.
-                                            </p>
-                                            <blockquote>
-                                                Celebrated share of first to worse. Weddings and any opinions suitable smallest nay. Houses or months settle remove ladies appear. Engrossed suffering supposing he recommend do eagerness.
-                                            </blockquote>
-                                            <p>
-                                                Drawings can followed improved out sociable not. Earnestly so do instantly pretended. See general few civilly amiable pleased account carried. Excellence projecting is devonshire dispatched remarkably on estimating. Side in so life past. Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new ham melancholy son themselves.
-                                            </p>
-                                            <h3>Conduct replied off led whether?</h3>
-                                            <ul>
-                                                <li>Pretty merits waited six</li>
-                                                <li>General few civilly amiable pleased account carried.</li>
-                                                <li>Continue indulged speaking</li>
-                                                <li>Narrow formal length my highly</li>
-                                                <li>Occasional pianoforte alteration unaffected impossible</li>
-                                            </ul>
-                                           
+                                            {/* Render dynamic blog content */}
+                                            {renderBlogContent(BlogContent)}
+
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +123,7 @@ const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass 
                                 {/* Post Author */}
                                 <div className="post-author">
                                     <div className="thumb">
-                                        <img src={team1Thumb} alt="Thumb" />
+                                        <img src={team1Thumb} alt="Author" />
                                     </div>
                                     <div className="info">
                                         <h4><Link to="#" onClick={handleSmoothScroll}>Md Sohag</Link></h4>
@@ -106,7 +133,7 @@ const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass 
                                     </div>
                                 </div>
 
-                                {/* Post Tags Share */}
+                                {/* Post Tags & Share */}
                                 <div className="post-tags share">
                                     <div className="tags">
                                         <h4>Tags: </h4>
@@ -126,22 +153,22 @@ const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass 
                                     <div className="post-previous">
                                         <Link to={`/blog-single-with-sidebar-light/${previousId}`}>
                                             <div className="icon"><i className="fas fa-angle-double-left"></i></div>
-                                            <div className="nav-title"> Previous Post <h5>{getFirstTwoWords(previousBlog?.title)}</h5></div>
+                                            <div className="nav-title"> Previous Post <h5>{getFirstTwoWords(previousBlog?.BlogTitle)}</h5></div>
                                         </Link>
                                     </div>
                                     <div className="post-next">
                                         <Link to={`/blog-single-with-sidebar-light/${nextId}`}>
-                                            <div className="nav-title">Next Post <h5>{getFirstTwoWords(nextBlog?.title)}</h5></div>
+                                            <div className="nav-title">Next Post <h5>{getFirstTwoWords(nextBlog?.BlogTitle)}</h5></div>
                                             <div className="icon"><i className="fas fa-angle-double-right"></i></div>
                                         </Link>
                                     </div>
                                 </div>
 
-                                {/* Start Blog Comment */}
+                                {/* Blog Comments */}
                                 <div className="blog-comments">
                                     <div className="comments-area">
                                         <div className="comments-title">
-                                            <h3>3 Comments On “Providing Top Quality Cleaning Related Services Charms.”</h3>
+                                            <h3>3 Comments On “{BlogTitle}”</h3>
                                             <BlogPostComments />
                                         </div>
                                         <div className="comments-form">
@@ -152,8 +179,10 @@ const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass 
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
+                            {/* Sidebar */}
                             <div className="sidebar col-xl-4 col-lg-5 col-md-12 mt-md-50 mt-xs-50">
                                 <aside>
                                     <SearchWidget />
@@ -165,6 +194,7 @@ const BlogSingleWithSidebarContentLight = ({ blogInfo, totalBlogs, sectionClass 
                                     <TagsWidget />
                                 </aside>
                             </div>
+
                         </div>
                     </div>
                 </div>

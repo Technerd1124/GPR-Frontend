@@ -70,7 +70,7 @@ const ServicesV1 = ({ hasTitle, sectionClass, lightMode }: DataType) => {
 
 
                 <div className="container">
-                    <div className="services-style-one-items">
+                    <div className="Sservices-style-one-items">
                         <div className="row">
                             {service?.serviceMenu?.map((item, i) => (
                                 <div
@@ -86,8 +86,8 @@ const ServicesV1 = ({ hasTitle, sectionClass, lightMode }: DataType) => {
                                                     key={icon.id || j} // ✅ key added
                                                     src={`${MEDIA_URL}${icon.url}`}
                                                     alt={item.ServiceName || "Service Icon"}
-                                                    width={75}
-                                                    height={60}
+                                                    width={89}
+                                                    height={100}
                                                 />
                                             ))}
                                         </div>

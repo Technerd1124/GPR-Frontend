@@ -7,7 +7,7 @@ import Home2Light from "./pages/homePages/Home2Light";
 // import Home6Light from "./pages/homePages/Home6Light";
 // import Home7Light from "./pages/homePages/Home7Light";
 // import Home8Light from "./pages/homePages/Home8Light";
-// import Home9Light from "./pages/homePages/Home9Light";
+import Home9Light from "./pages/homePages/Home9Light";
 
 import AboutUsLightPage from "./pages/innerPages/AboutUsLightPage";
 import About2LightPage from "./pages/innerPages/About2LightPage";
@@ -76,8 +76,8 @@ const Routers = () => {
       <Route path="/home-5-light" element={<Home5Light />} />
       <Route path="/home-6-light" element={<Home6Light />} />
       <Route path="/home-7-light" element={<Home7Light />} />
-      <Route path="/home-8-light" element={<Home8Light />} />
-      <Route path="/home-9-light" element={<Home9Light />} /> */}
+      <Route path="/home-8-light" element={<Home8Light />} /> */}
+      <Route path="/home-9-light" element={<Home9Light />} />
 
       <Route path="/about-us-light" element={<AboutUsLightPage />} />
       <Route path="/about-2-light" element={<About2LightPage />} />
@@ -91,7 +91,7 @@ const Routers = () => {
       <Route path="/contact-us-light" element={<ContactUsLightPage />} />
       <Route path="/faq-light" element={<FaqLightPage />} />
 
-      <Route path="/services-light" element={<ServicesLightPage />} />
+      <Route path="/services-light/:Label" element={<ServicesLightPage />} />
       <Route path="/services-2-light" element={<Services2LightPage />} />
       <Route path="/services-3-light" element={<Services3LightPage />} />
       <Route path="/services-4-light" element={<Services4LightPage />} />

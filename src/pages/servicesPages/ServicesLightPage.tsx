@@ -1,24 +1,30 @@
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
-import ClientsV1 from "../../components/clients/ClientsV1";
-import FunFactV1 from "../../components/fact/FunFactV1";
 import LayoutV1Light from "../../components/layouts/LayoutV1Light";
+import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import ServicesV1Light from "../../components/services/ServicesV1Light";
+import FunFactV1 from "../../components/fact/FunFactV1";
+import ClientsV1 from "../../components/clients/ClientsV1";
 import TestimonialV3 from "../../components/testimonial/TestimonialV3";
 
 const ServicesLightPage = () => {
+    const { label } = useParams<{ label?: string }>(); // label from URL
+
+
     return (
         <>
             <Helmet>
-                <title> GrowPro Rise  </title>
+                <title>GrowPro Rise</title>
             </Helmet>
-
             <LayoutV1Light>
-                <Breadcrumb title='Our Services' breadCrumb='services' LightMode={true} />
-                <ServicesV1Light sectionClass='default-padding-bottom bg-gray' />
-                {/* <FunFactV1 sectionClass='default-padding-bottom bg-gray' /> */}
+                <Breadcrumb title="Our Services" breadCrumb="services" LightMode={true} />
+                {/* ✅ Pass the ID to ServicesV1Light */}
+                <ServicesV1Light
+                    sectionClass="default-padding-bottom bg-gray"
+                    serviceLabel={label} // pass the submenu label
+                />
+                <FunFactV1 sectionClass="default-padding-bottom bg-gray" />
                 <ClientsV1 />
-                {/* <PriceV1 sectionClass='bg-gray' /> */}
                 <TestimonialV3 />
             </LayoutV1Light>
         </>

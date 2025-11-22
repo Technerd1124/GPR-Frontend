@@ -8,11 +8,10 @@ export const MEDIA_URL="http://localhost:1338"
 // Header - Navbar Menu 
 export const getHeader = async (): Promise<{ data: HeaderData }> => {
   const res = await axios.get(
-    `${API_URL}/header?populate[logo_gpr][populate]=logo_img&populate[NAVLINK][populate][SubLinks][populate]=Submenu`
+    `${API_URL}/header?populate[logo_gpr][populate]=logo_img&populate[NAVLINK][populate][SubLinks][populate]=Submenu&populate[NAVLINK][populate]=ServiceOffers`
   );
   return res.data;
 };
-
 
  // Footer 
 export const getFooter = async (): Promise<{ data: FooterData }> => {

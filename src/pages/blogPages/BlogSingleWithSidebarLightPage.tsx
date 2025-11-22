@@ -11,21 +11,21 @@ import { getBlog } from '../../api/strapi';
 const BlogSingleWithSidebarLightPage = () => {
 
     const { id } = useParams();
-     const [blogs, setBlogs] = useState<BlogItem[]>([]);
-    
-        useEffect(() => {
-            const fetchBlogs = async () => {
-                try {
-                    const res = await getBlog();
-                    setBlogs(res.data.Blog); // 
-                } catch (err) {
-                    console.error("Error fetching blogs:", err);
-                }
-            };
-            fetchBlogs();
-        }, []);
-    
-    const data = blogs.find(portfolio => portfolio.Blog_id === parseInt(id || '0'));
+    const [blogs, setBlogs] = useState<BlogItem[]>([]);
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const res = await getBlog();
+                setBlogs(res.data.Blog); // 
+            } catch (err) {
+                console.error("Error fetching blogs:", err);
+            }
+        };
+        fetchBlogs();
+    }, []);
+
+    const data = blogs.find(portfolio => portfolio.Blog_Id === parseInt(id || '0'));
 
     return (
         <>
@@ -35,7 +35,8 @@ const BlogSingleWithSidebarLightPage = () => {
 
             <LayoutV1Light>
                 <Breadcrumb title='Blog Single' breadCrumb='blog-Single' LightMode={true} />
-                {data && <BlogSingleWithSidebarContentLight sectionClass='default-padding' blogInfo={data} totalBlogs={BlogV3Data.length} />}
+                {data && <BlogSingleWithSidebarContentLight sectionClass='default-padding' blogInfo={data} totalBlogs={blogs.length} />}
+
             </LayoutV1Light>
         </>
     );

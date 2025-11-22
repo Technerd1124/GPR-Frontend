@@ -6,11 +6,16 @@ import { useState } from "react";
 interface DataType {
     hasTitle?: boolean;
     sectionClass?: string;
+    serviceLabel?: string; // instead of service_id
+
 }
 
-const ServicesV1Light = ({ hasTitle, sectionClass }: DataType) => {
+
+const ServicesV1Light = ({ hasTitle, sectionClass, serviceLabel }: DataType) => {
 
     const [activeServiceId, setActiveServiceId] = useState(ServicesV1Data[0]?.id || null);
+    const [activeServiceLabel, setActiveServiceLabel] = useState<string | null>(serviceLabel || null);
+
 
     const handleMouseEnter = (id: number) => {
         setActiveServiceId(id);

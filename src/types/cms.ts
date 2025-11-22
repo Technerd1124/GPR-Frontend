@@ -2,19 +2,27 @@
 // types/header.ts
 
 
+export interface Offerlist { 
+    id:number,
+  Label:string,
+  Url: string
+}
 export interface submenu { 
    Label:string;
    url:string;
    IDno:number;
+   
 }
 
 export interface SubLink {
   id: number;
+  serviceID:number;
   Label: string;
   url: string | null;
   isButton: boolean;
   ButtonType: string | null;
   Submenu:submenu[];
+  Description:string;
 }
 export interface NavLink {
   id: number;
@@ -23,6 +31,7 @@ export interface NavLink {
   ButtonType: string;
   IsExternal: boolean;
   SubLinks: SubLink[];
+  ServiceOffers:Offerlist[]
 }
 
 export interface Logo {
@@ -375,7 +384,7 @@ export type Testimonial = {
         export interface BlogItem {
           description: string;
           publishedAt: any;
-          Blog_id: number;
+          Blog_Id: number;
           author: string;
           BlogTitle: string;
           Date: string;
